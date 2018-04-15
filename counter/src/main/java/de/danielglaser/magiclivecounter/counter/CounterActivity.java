@@ -137,8 +137,8 @@ public class CounterActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        Button player1PlusButton = findViewById(R.id.player1PlusButton);
-        Button player1MinusButton = findViewById(R.id.player1MinusButton);
+        Button player1PlusButton = findViewById(R.id.playerMinusButton);
+        Button player1MinusButton = findViewById(R.id.playerPlusButton);
         Button player2PlusButton = findViewById(R.id.player2PlusButton);
         Button player2MinusButton = findViewById(R.id.player2MinusButton);
 
