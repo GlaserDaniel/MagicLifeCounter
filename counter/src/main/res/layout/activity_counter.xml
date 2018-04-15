@@ -26,6 +26,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:keepScreenOn="true"
+            android:rotation="180"
             android:text="20"
             android:textColor="@android:color/white"
             android:textSize="50sp"
@@ -74,7 +75,7 @@
             app:srcCompat="@android:color/white" />
 
         <Button
-            android:id="@+id/player1MinusButton"
+            android:id="@+id/player1PlusButton"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -82,17 +83,18 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="-"
+            android:onClick="onClickPlayer1PlusButton"
+            android:text="+"
             android:textColor="@android:color/white"
             android:textSize="50sp"
             app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
-            app:layout_constraintEnd_toStartOf="@+id/player1PlusButton"
+            app:layout_constraintEnd_toStartOf="@+id/player1MinusButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/player1PlusButton"
+            android:id="@+id/player1MinusButton"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -100,13 +102,14 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:text="+"
+            android:onClick="onClickPlayer1MinusButton"
+            android:text="-"
             android:textColor="@android:color/white"
             android:textSize="50sp"
             app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/player1MinusButton"
+            app:layout_constraintStart_toEndOf="@+id/player1PlusButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -118,11 +121,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:onClick="onClickPlayer2MinusButton"
             android:text="-"
             android:textColor="@android:color/white"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/player1PlusButton"
+            app:layout_constraintEnd_toStartOf="@+id/player1MinusButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/horizontalGuideline" />
@@ -136,6 +140,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:longClickable="true"
+            android:onClick="onClickPlayer2PlusButton"
             android:text="+"
             android:textColor="@android:color/white"
             android:textSize="40sp"

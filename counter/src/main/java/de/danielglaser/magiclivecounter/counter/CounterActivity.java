@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -83,6 +85,9 @@ public class CounterActivity extends AppCompatActivity {
         }
     };
 
+    Player player1;
+    Player player2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +111,12 @@ public class CounterActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        player1 = new Player(20);
+        player2 = new Player(20);
+        updateLive();
+
+        initUI();
     }
 
     @Override
@@ -123,6 +134,11 @@ public class CounterActivity extends AppCompatActivity {
         super.onResume();
 
         delayedHide(100);
+    }
+
+    private void initUI() {
+        Button button = findViewById(R.id.player1PlusButton);
+        //TODO
     }
 
     private void toggle() {
@@ -166,5 +182,33 @@ public class CounterActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    public void onClickPlayer1PlusButton(View view) {
+        player1.addLive(1);
+        updateLive();
+    }
+
+    public void onClickPlayer1MinusButton(View view) {
+        player1.subLive(1);
+        updateLive();
+    }
+
+    public void onClickPlayer2PlusButton(View view) {
+        player2.addLive(1);
+        updateLive();
+    }
+
+    public void onClickPlayer2MinusButton(View view) {
+        player2.subLive(1);
+        updateLive();
+    }
+
+    private void updateLive() {
+        TextView player1LiveText = findViewById(R.id.player1LiveText);
+        TextView player2LiveText = findViewById(R.id.player2LiveText);
+
+        player1LiveText.setText("" + player1.getLive());
+        player2LiveText.setText("" + player2.getLive());
     }
 }
