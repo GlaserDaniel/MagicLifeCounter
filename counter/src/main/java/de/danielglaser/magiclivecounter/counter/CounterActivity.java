@@ -118,6 +118,13 @@ public class CounterActivity extends AppCompatActivity {
         delayedHide(100);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        delayedHide(100);
+    }
+
     private void toggle() {
         if (mVisible) {
             hide();
