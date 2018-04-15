@@ -137,8 +137,46 @@ public class CounterActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        Button button = findViewById(R.id.player1PlusButton);
-        //TODO
+        Button player1PlusButton = findViewById(R.id.player1PlusButton);
+        Button player1MinusButton = findViewById(R.id.player1MinusButton);
+        Button player2PlusButton = findViewById(R.id.player2PlusButton);
+        Button player2MinusButton = findViewById(R.id.player2MinusButton);
+
+        player1PlusButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player1.addLive(10);
+                updateLive();
+                return true;
+            }
+        });
+
+        player1MinusButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player1.subLive(10);
+                updateLive();
+                return true;
+            }
+        });
+
+        player2PlusButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player2.addLive(10);
+                updateLive();
+                return true;
+            }
+        });
+
+        player2MinusButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player2.subLive(10);
+                updateLive();
+                return true;
+            }
+        });
     }
 
     private void toggle() {
