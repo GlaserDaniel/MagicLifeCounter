@@ -1,6 +1,7 @@
 package de.danielglaser.magiclivecounter.counter;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -121,6 +122,9 @@ public class CounterActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // for 3 player and more
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         delayedHide(100);
     }

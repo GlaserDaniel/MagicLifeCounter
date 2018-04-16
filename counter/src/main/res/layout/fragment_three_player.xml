@@ -2,10 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/twoPlayerLayout"
+    android:id="@+id/threePlayerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TwoPlayerFragment">
+    tools:context=".ThreePlayerFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,14 +23,30 @@
             android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/player2Holder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <fragment
+            android:id="@+id/player2Fragment"
+            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="205dp"
+            tools:layout_editor_absoluteY="329dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/player3Holder"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,14 +55,12 @@
         app:layout_constraintTop_toTopOf="@+id/horizontalGuideline">
 
         <fragment
-            android:id="@+id/player2Fragment"
+            android:id="@+id/player3Fragment"
             android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/horizontalGuideline" />
+            tools:layout_editor_absoluteX="58dp"
+            tools:layout_editor_absoluteY="340dp" />
     </FrameLayout>
 
     <android.support.constraint.Guideline
@@ -57,12 +71,29 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <ImageView
-        android:id="@+id/lineImageView"
+        android:id="@+id/horizontalLineImageView"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/player2Holder"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:color/white" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/verticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/verticalLineImageView"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/white" />
 
 </android.support.constraint.ConstraintLayout>
