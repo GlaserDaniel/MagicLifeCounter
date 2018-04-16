@@ -52,12 +52,31 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vertical50Guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontalGuideline">
 
         <fragment
             android:id="@+id/player3Fragment"
+            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="58dp"
+            tools:layout_editor_absoluteY="340dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/player4Holder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/vertical50Guideline"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline">
+
+        <fragment
+            android:id="@+id/player4Fragment"
             android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,7 +112,7 @@
         android:id="@+id/verticalLineImageView"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vertical50Guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/white" />
