@@ -64,18 +64,7 @@ public class ThreePlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_three_player, container, false);
-
-        /*FrameLayout player1Holder = v.findViewById(R.id.player1Holder);
-        FrameLayout player2Holder = v.findViewById(R.id.player2Holder);
-        FrameLayout player3Holder = v.findViewById(R.id.player3Holder);
-
-        // rotate the players
-        player1Holder.setRotation(270);
-        player2Holder.setRotation(270);
-        player3Holder.setRotation(90);*/
-
-        return v;
+        return inflater.inflate(R.layout.fragment_three_player, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

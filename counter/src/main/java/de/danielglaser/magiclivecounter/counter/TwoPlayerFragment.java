@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 
 /**
@@ -65,14 +64,7 @@ public class TwoPlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_two_player, container, false);
-
-        FrameLayout player1Holder = v.findViewById(R.id.player1Holder);
-
-        // rotate the player 1
-        player1Holder.setRotation(180);
-
-        return v;
+        return inflater.inflate(R.layout.fragment_two_player, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
