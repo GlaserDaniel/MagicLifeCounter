@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".CounterActivity">
+    tools:context=".view.CounterActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="de.danielglaser.magiclivecounter.counter.SixPlayerFragment"
+        android:name="de.danielglaser.magiclivecounter.counter.view.SixPlayerFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

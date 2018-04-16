@@ -1,4 +1,4 @@
-package de.danielglaser.magiclivecounter.counter;
+package de.danielglaser.magiclivecounter.counter.view;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import de.danielglaser.magiclivecounter.counter.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SixPlayerFragment.OnFragmentInteractionListener} interface
+ * {@link FivePlayerFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SixPlayerFragment#newInstance} factory method to
+ * Use the {@link FivePlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SixPlayerFragment extends Fragment {
+public class FivePlayerFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class SixPlayerFragment extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
 
-    public SixPlayerFragment() {
+    public FivePlayerFragment() {
         // Required empty public constructor
     }
 
@@ -42,8 +44,8 @@ public class SixPlayerFragment extends Fragment {
      * @return A new instance of fragment ThreePlayerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SixPlayerFragment newInstance(String param1, String param2) {
-        SixPlayerFragment fragment = new SixPlayerFragment();
+    public static FivePlayerFragment newInstance(String param1, String param2) {
+        FivePlayerFragment fragment = new FivePlayerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +66,7 @@ public class SixPlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_six_player, container, false);
+        return inflater.inflate(R.layout.fragment_five_player, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

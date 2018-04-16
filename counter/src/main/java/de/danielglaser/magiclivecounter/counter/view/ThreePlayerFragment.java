@@ -1,4 +1,4 @@
-package de.danielglaser.magiclivecounter.counter;
+package de.danielglaser.magiclivecounter.counter.view;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import de.danielglaser.magiclivecounter.counter.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TwoPlayerFragment.OnFragmentInteractionListener} interface
+ * {@link ThreePlayerFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TwoPlayerFragment#newInstance} factory method to
+ * Use the {@link ThreePlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TwoPlayerFragment extends Fragment {
+public class ThreePlayerFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class TwoPlayerFragment extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
 
-    public TwoPlayerFragment() {
+    public ThreePlayerFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class TwoPlayerFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TwoPlayerFragment.
+     * @return A new instance of fragment ThreePlayerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TwoPlayerFragment newInstance(String param1, String param2) {
-        TwoPlayerFragment fragment = new TwoPlayerFragment();
+    public static ThreePlayerFragment newInstance(String param1, String param2) {
+        ThreePlayerFragment fragment = new ThreePlayerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +66,7 @@ public class TwoPlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_two_player, container, false);
+        return inflater.inflate(R.layout.fragment_three_player, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -72,6 +74,11 @@ public class TwoPlayerFragment extends Fragment {
         /*if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }*/
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

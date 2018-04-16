@@ -5,7 +5,7 @@
     android:id="@+id/twoPlayerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TwoPlayerFragment">
+    tools:context=".view.TwoPlayerFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -21,7 +21,7 @@
 
         <fragment
             android:id="@+id/player1Fragment"
-            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:name="de.danielglaser.magiclivecounter.counter.view.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
@@ -41,7 +41,7 @@
 
         <fragment
             android:id="@+id/player2Fragment"
-            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:name="de.danielglaser.magiclivecounter.counter.view.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

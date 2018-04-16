@@ -5,7 +5,7 @@
     android:id="@+id/threePlayerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThreePlayerFragment">
+    tools:context=".view.ThreePlayerFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -21,7 +21,7 @@
 
         <fragment
             android:id="@+id/player1Fragment"
-            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:name="de.danielglaser.magiclivecounter.counter.view.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
 
         <fragment
             android:id="@+id/player2Fragment"
-            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:name="de.danielglaser.magiclivecounter.counter.view.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="205dp"
@@ -58,7 +58,7 @@
 
         <fragment
             android:id="@+id/player3Fragment"
-            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:name="de.danielglaser.magiclivecounter.counter.view.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="58dp"
@@ -77,7 +77,7 @@
 
         <fragment
             android:id="@+id/player4Fragment"
-            android:name="de.danielglaser.magiclivecounter.counter.PlayerFragment"
+            android:name="de.danielglaser.magiclivecounter.counter.view.PlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="58dp"
