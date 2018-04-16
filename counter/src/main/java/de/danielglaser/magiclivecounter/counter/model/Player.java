@@ -1,4 +1,4 @@
-package de.danielglaser.magiclivecounter.counter;
+package de.danielglaser.magiclivecounter.counter.model;
 
 public class Player {
     private int live;

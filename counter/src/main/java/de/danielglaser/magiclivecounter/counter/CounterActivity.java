@@ -1,14 +1,12 @@
 package de.danielglaser.magiclivecounter.counter;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -85,9 +83,6 @@ public class CounterActivity extends AppCompatActivity {
         }
     };
 
-    Player player1;
-    Player player2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,27 +91,21 @@ public class CounterActivity extends AppCompatActivity {
 
         mVisible = true;
         //mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.player2LiveText);
+        mContentView = findViewById(R.id.mainLayout);
 
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
+        /*mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
-        });
+        });*/
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-
-        player1 = new Player(20);
-        player2 = new Player(20);
-        updateLive();
-
-        initUI();
     }
 
     @Override
@@ -134,49 +123,6 @@ public class CounterActivity extends AppCompatActivity {
         super.onResume();
 
         delayedHide(100);
-    }
-
-    private void initUI() {
-        Button player1PlusButton = findViewById(R.id.playerMinusButton);
-        Button player1MinusButton = findViewById(R.id.playerPlusButton);
-        Button player2PlusButton = findViewById(R.id.player2PlusButton);
-        Button player2MinusButton = findViewById(R.id.player2MinusButton);
-
-        player1PlusButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                player1.addLive(10);
-                updateLive();
-                return true;
-            }
-        });
-
-        player1MinusButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                player1.subLive(10);
-                updateLive();
-                return true;
-            }
-        });
-
-        player2PlusButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                player2.addLive(10);
-                updateLive();
-                return true;
-            }
-        });
-
-        player2MinusButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                player2.subLive(10);
-                updateLive();
-                return true;
-            }
-        });
     }
 
     private void toggle() {
@@ -220,33 +166,5 @@ public class CounterActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
-
-    public void onClickPlayer1PlusButton(View view) {
-        player1.addLive(1);
-        updateLive();
-    }
-
-    public void onClickPlayer1MinusButton(View view) {
-        player1.subLive(1);
-        updateLive();
-    }
-
-    public void onClickPlayer2PlusButton(View view) {
-        player2.addLive(1);
-        updateLive();
-    }
-
-    public void onClickPlayer2MinusButton(View view) {
-        player2.subLive(1);
-        updateLive();
-    }
-
-    private void updateLive() {
-        TextView player1LiveText = findViewById(R.id.player1LiveText);
-        TextView player2LiveText = findViewById(R.id.player2LiveText);
-
-        player1LiveText.setText("" + player1.getLive());
-        player2LiveText.setText("" + player2.getLive());
     }
 }

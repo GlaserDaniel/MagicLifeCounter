@@ -7,35 +7,31 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-
-import de.danielglaser.magiclivecounter.counter.model.Player;
+import android.widget.FrameLayout;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PlayerFragment.OnFragmentInteractionListener} interface
+ * {@link TwoPlayerFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PlayerFragment#newInstance} factory method to
+ * Use the {@link TwoPlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment {
+public class TwoPlayerFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private Player player;
-    private TextView playerLiveText;
+    private String mParam1;
+    private String mParam2;
 
     //private OnFragmentInteractionListener mListener;
 
-    public PlayerFragment() {
+    public TwoPlayerFragment() {
         // Required empty public constructor
-        player = new Player(20); //TODO Read Live from settings
     }
 
     /**
@@ -44,11 +40,11 @@ public class PlayerFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PlayerFragment.
+     * @return A new instance of fragment TwoPlayerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PlayerFragment newInstance(String param1, String param2) {
-        PlayerFragment fragment = new PlayerFragment();
+    public static TwoPlayerFragment newInstance(String param1, String param2) {
+        TwoPlayerFragment fragment = new TwoPlayerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,63 +55,24 @@ public class PlayerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (getArguments() != null) {
-            player = getArguments().getString(ARG_PARAM1);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_player, container, false);
+        View v = inflater.inflate(R.layout.fragment_two_player, container, false);
 
-        playerLiveText = v.findViewById(R.id.playerLiveText);
-        updateLive();
+        FrameLayout player1Holder = v.findViewById(R.id.player1Holder);
 
-        Button playerPlusButton = v.findViewById(R.id.playerPlusButton);
-        Button playerMinusButton = v.findViewById(R.id.playerMinusButton);
-
-        playerPlusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.addLive(1);
-                updateLive();
-            }
-        });
-
-        playerPlusButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                player.addLive(10);
-                updateLive();
-                return true;
-            }
-        });
-
-        playerMinusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.subLive(1);
-                updateLive();
-            }
-        });
-
-        playerMinusButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                player.subLive(10);
-                updateLive();
-                return true;
-            }
-        });
+        // rotate the player 1
+        player1Holder.setRotation(180);
 
         return v;
-    }
-
-    private void updateLive() {
-        playerLiveText.setText("" + player.getLive());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
