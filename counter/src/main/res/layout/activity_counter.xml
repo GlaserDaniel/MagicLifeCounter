@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="de.danielglaser.magiclivecounter.counter.view.SixPlayerFragment"
+        android:name="de.danielglaser.magiclivecounter.counter.view.TwoPlayerFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

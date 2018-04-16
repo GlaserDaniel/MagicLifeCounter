@@ -3,10 +3,14 @@ package de.danielglaser.magiclivecounter.counter.view;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Spinner;
 
 import de.danielglaser.magiclivecounter.counter.R;
 
@@ -25,9 +29,7 @@ public class FourPlayerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private CounterActivity activity;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -56,17 +58,71 @@ public class FourPlayerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        activity = (CounterActivity) getActivity();
+        /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        }*/
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_four_player, container, false);
+        View v = inflater.inflate(R.layout.fragment_four_player, container, false);
+
+        final Button menuButton = v.findViewById(R.id.menuButton);
+        final ConstraintLayout manuLayout = v.findViewById(R.id.menuLayout);
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int visibility = manuLayout.getVisibility();
+                switch (visibility) {
+                    case View.GONE:
+                    case View.INVISIBLE:
+                        manuLayout.setVisibility(View.VISIBLE);
+                        break;
+                    case View.VISIBLE:
+                        manuLayout.setVisibility(View.INVISIBLE);
+                        break;
+                }
+            }
+        });
+
+        final Spinner playerSelectorSpinner = v.findViewById(R.id.playerSelectorSpinner);
+
+        playerSelectorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object object = playerSelectorSpinner.getItemAtPosition(position);
+                if (object instanceof String) {
+                    String string = (String) object;
+
+                    switch (string) {
+                        case "2":
+                            activity.loadFragment(new TwoPlayerFragment());
+                            break;
+                        case "3":
+                            activity.loadFragment(new ThreePlayerFragment());
+                            break;
+                        case "5":
+                            activity.loadFragment(new FivePlayerFragment());
+                            break;
+                        case "6":
+                            activity.loadFragment(new SixPlayerFragment());
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Object o = new Object();
+            }
+        });
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
