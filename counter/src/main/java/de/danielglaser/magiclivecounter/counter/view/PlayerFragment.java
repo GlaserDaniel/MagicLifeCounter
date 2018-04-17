@@ -1,13 +1,16 @@
 package de.danielglaser.magiclivecounter.counter.view;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import de.danielglaser.magiclivecounter.counter.R;
@@ -28,9 +31,10 @@ public class PlayerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private Player player;
     private TextView playerLiveText;
+
+    private CounterActivity activity;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -60,10 +64,7 @@ public class PlayerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (getArguments() != null) {
-            player = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        activity = (CounterActivity) getActivity();
     }
 
     @Override
@@ -108,6 +109,38 @@ public class PlayerFragment extends Fragment {
             public boolean onLongClick(View v) {
                 player.subLive(10);
                 updateLive();
+                return true;
+            }
+        });
+
+        final TextView nameTextView = v.findViewById(R.id.nameTextView);
+
+        final View view = inflater.inflate(R.layout.dialog_edit_name, null);
+
+        final EditText nameEditText = view.findViewById(R.id.nameEditText);
+
+        nameTextView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Edit Name");
+                builder.setView(view)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                nameTextView.setText(nameEditText.getText());
+                                activity.delayedHide(100);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // cancel the dialog
+                                activity.delayedHide(100);
+                            }
+                        })
+                        .create()
+                        .show();
                 return true;
             }
         });
