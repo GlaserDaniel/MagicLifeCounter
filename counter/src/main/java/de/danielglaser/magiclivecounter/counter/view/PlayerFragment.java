@@ -115,7 +115,7 @@ public class PlayerFragment extends Fragment {
 
         final TextView nameTextView = v.findViewById(R.id.nameTextView);
 
-        final View view = inflater.inflate(R.layout.dialog_edit_name, null);
+        final View view = inflater.inflate(R.layout.dialog_edit_name, null, false);
 
         final EditText nameEditText = view.findViewById(R.id.nameEditText);
 
@@ -129,14 +129,24 @@ public class PlayerFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 nameTextView.setText(nameEditText.getText());
+
+                                // fullscreen again
                                 activity.delayedHide(100);
+
+                                // to not get a IllegalStateException
+                                ((ViewGroup) view.getParent()).removeAllViews();
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // cancel the dialog
+
+                                // fullscreen again
                                 activity.delayedHide(100);
+
+                                // to not get a IllegalStateException
+                                ((ViewGroup) view.getParent()).removeAllViews();
                             }
                         })
                         .create()
