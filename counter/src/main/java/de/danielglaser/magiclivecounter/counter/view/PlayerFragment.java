@@ -34,6 +34,8 @@ public class PlayerFragment extends Fragment {
     private Player player;
     private TextView playerLiveText;
     private TextView poisonTextView;
+    private TextView energyTextView;
+    private TextView commanderDamageTextView;
 
     private CounterActivity activity;
 
@@ -175,6 +177,44 @@ public class PlayerFragment extends Fragment {
             }
         });
 
+        energyTextView = v.findViewById(R.id.energyTextView);
+
+        energyTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.addEnergy(1);
+                updateEnergy();
+            }
+        });
+
+        energyTextView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player.subEnergy(1);
+                updateEnergy();
+                return true;
+            }
+        });
+
+        commanderDamageTextView = v.findViewById(R.id.commanderDamageTextView);
+
+        commanderDamageTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.addCommanderDamage(1);
+                updateCommanderDamage();
+            }
+        });
+
+        commanderDamageTextView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player.subCommanderDamage(1);
+                updateCommanderDamage();
+                return true;
+            }
+        });
+
         return v;
     }
 
@@ -184,6 +224,14 @@ public class PlayerFragment extends Fragment {
 
     private void updatePoison() {
         poisonTextView.setText("" + player.getPoison());
+    }
+
+    private void updateEnergy() {
+        energyTextView.setText("" + player.getEnergy());
+    }
+
+    private void updateCommanderDamage() {
+        commanderDamageTextView.setText("" + player.getCommanderDamage());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
