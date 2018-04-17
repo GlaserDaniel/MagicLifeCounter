@@ -88,6 +88,8 @@ public class FivePlayerFragment extends Fragment {
 
         final Spinner playerSelectorSpinner = v.findViewById(R.id.playerSelectorSpinner);
 
+        playerSelectorSpinner.setSelection(3);
+
         playerSelectorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

@@ -92,6 +92,8 @@ public class FourPlayerFragment extends Fragment {
 
         final Spinner playerSelectorSpinner = v.findViewById(R.id.playerSelectorSpinner);
 
+        playerSelectorSpinner.setSelection(2);
+
         playerSelectorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
