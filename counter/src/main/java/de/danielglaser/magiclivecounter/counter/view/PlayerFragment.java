@@ -33,6 +33,7 @@ public class PlayerFragment extends Fragment {
 
     private Player player;
     private TextView playerLiveText;
+    private TextView poisonTextView;
 
     private CounterActivity activity;
 
@@ -77,7 +78,7 @@ public class PlayerFragment extends Fragment {
         updateLive();
 
         Button playerPlusButton = v.findViewById(R.id.playerPlusButton);
-        Button playerMinusButton = v.findViewById(R.id.playerMinusButton);
+        final Button playerMinusButton = v.findViewById(R.id.playerMinusButton);
 
         playerPlusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,11 +156,34 @@ public class PlayerFragment extends Fragment {
             }
         });
 
+        poisonTextView = v.findViewById(R.id.poisonTextView);
+
+        poisonTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.addPoison(1);
+                updatePoison();
+            }
+        });
+
+        poisonTextView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                player.subPoison(1);
+                updatePoison();
+                return true;
+            }
+        });
+
         return v;
     }
 
     private void updateLive() {
         playerLiveText.setText("" + player.getLive());
+    }
+
+    private void updatePoison() {
+        poisonTextView.setText("" + player.getPoison());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
