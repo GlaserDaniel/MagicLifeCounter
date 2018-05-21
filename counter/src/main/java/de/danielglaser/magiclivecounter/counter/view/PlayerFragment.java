@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.model.Player;
@@ -131,7 +132,13 @@ public class PlayerFragment extends Fragment {
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                nameTextView.setText(nameEditText.getText());
+                                String name = nameEditText.getText().toString();
+                                if (name.isEmpty()) {
+                                    Toast.makeText(getContext(), R.string.NameNotNull, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    name = name.trim();
+                                    nameTextView.setText(name);
+                                }
 
                                 // fullscreen again
                                 activity.delayedHide(100);
@@ -143,6 +150,19 @@ public class PlayerFragment extends Fragment {
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                // cancel the dialog
+
+                                // fullscreen again
+                                activity.delayedHide(100);
+
+                                // to not get a IllegalStateException
+                                ((ViewGroup) view.getParent()).removeAllViews();
+                            }
+                        })
+                        .setCancelable(true)
+                        .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
                                 // cancel the dialog
 
                                 // fullscreen again
