@@ -118,7 +118,6 @@ public class TwoPlayerFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Object o = new Object();
             }
         });
 
