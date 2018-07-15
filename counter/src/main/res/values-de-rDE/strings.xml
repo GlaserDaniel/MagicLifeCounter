@@ -2,4 +2,5 @@
 <resources>
     <string name="NameNotNull">Name kann nicht leer sein!</string>
     <string name="menu">Menü</string>
+    <string name="name">Name</string>
 </resources>
