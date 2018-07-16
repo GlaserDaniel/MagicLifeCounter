@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import de.danielglaser.magiclivecounter.counter.R;
+import de.danielglaser.magiclivecounter.counter.model.Settings;
 
 
 /**
@@ -71,6 +73,8 @@ public class FourPlayerFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_four_player, container, false);
 
+        // -----------------------------------------------------------------------------------------
+
         final Button menuButton = v.findViewById(R.id.menuButton);
         final ConstraintLayout manuLayout = v.findViewById(R.id.menuLayout);
 
@@ -89,6 +93,38 @@ public class FourPlayerFragment extends Fragment {
                 }
             }
         });
+
+        final Spinner startLiveSpinner = v.findViewById(R.id.startLiveSpinner);
+
+        startLiveSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object startLiveObject = startLiveSpinner.getItemAtPosition(position);
+                if (startLiveObject instanceof String) {
+                    String startLiveString = (String) startLiveObject;
+                    int startLiveInteger = Integer.parseInt(startLiveString);
+                    Log.d("Test", "Live: " + startLiveInteger);
+                    Settings.getInstance().setStartLive(startLiveInteger);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        String[] startLiveArray = getResources().getStringArray(R.array.amountOfStartLive);
+
+        int i;
+
+        for (i = 0; i < startLiveArray.length; i++) {
+            if (Integer.parseInt(startLiveArray[i]) == Settings.getInstance().getStartLive()) {
+                startLiveSpinner.setSelection(i);
+                break;
+            }
+        }
+
+        // -----------------------------------------------------------------------------------------
 
         final Spinner playerSelectorSpinner = v.findViewById(R.id.playerSelectorSpinner);
 

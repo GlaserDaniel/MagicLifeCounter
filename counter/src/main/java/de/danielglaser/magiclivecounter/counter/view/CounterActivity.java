@@ -8,11 +8,8 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Spinner;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.model.Settings;
@@ -108,37 +105,6 @@ public class CounterActivity extends AppCompatActivity {
         mVisible = true;
         //mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.mainLayout);
-
-        final Spinner startLiveSpinner = findViewById(R.id.startLiveSpinner);
-
-        startLiveSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Object startLiveObject = startLiveSpinner.getItemAtPosition(position);
-                if (startLiveObject instanceof String) {
-                    String startLiveString = (String) startLiveObject;
-                    int startLiveInteger = Integer.parseInt(startLiveString);
-                    Log.d("Test", "Live: " + startLiveInteger);
-                    Settings.getInstance().setStartLive(startLiveInteger);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        String[] startLiveArray = getResources().getStringArray(R.array.amountOfStartLive);
-
-        int i;
-
-        for (i = 0; i < startLiveArray.length; i++) {
-            if (Integer.parseInt(startLiveArray[i]) == Settings.getInstance().getStartLive()) {
-                startLiveSpinner.setSelection(i);
-                break;
-            }
-        }
-
 
         // Set up the user interaction to manually show or hide the system UI.
         /*mContentView.setOnClickListener(new View.OnClickListener() {
