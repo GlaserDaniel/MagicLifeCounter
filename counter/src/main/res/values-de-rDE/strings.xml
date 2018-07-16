@@ -3,6 +3,6 @@
     <string name="NameNotNull">Name kann nicht leer sein!</string>
     <string name="menu">Menü</string>
     <string name="name">Name</string>
-    <string name="players">Players</string>
-    <string name="startLive">Start live</string>
+    <string name="players">Spieler</string>
+    <string name="startLive">Start Leben</string>
 </resources>
