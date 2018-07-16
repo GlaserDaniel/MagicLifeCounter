@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.model.Player;
+import de.danielglaser.magiclivecounter.counter.model.Settings;
 
 
 /**
@@ -45,6 +46,7 @@ public class PlayerFragment extends Fragment {
     public PlayerFragment() {
         // Required empty public constructor
         player = new Player();
+        Settings.getInstance().addPlayer(player);
     }
 
     /**
@@ -252,6 +254,14 @@ public class PlayerFragment extends Fragment {
 
     private void updateCommanderDamage() {
         commanderDamageTextView.setText("" + player.getCommanderDamage());
+    }
+
+    public void resetPoints() {
+        player.resetPoints();
+        updateLive();
+        updatePoison();
+        updateEnergy();
+        updateCommanderDamage();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

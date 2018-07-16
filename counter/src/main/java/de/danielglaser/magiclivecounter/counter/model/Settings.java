@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
+
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.view.CounterActivity;
 
@@ -33,6 +35,7 @@ public class Settings {
     }
 
     private int startLive;
+    private ArrayList<Player> players = new ArrayList<>();
 
     public int getStartLive() {
         return startLive;
@@ -40,6 +43,16 @@ public class Settings {
 
     public void setStartLive(int startLive) {
         this.startLive = startLive;
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public void resetPoints() {
+        for (Player player: players) {
+            player.resetPoints();
+        }
     }
 
     private void load() {

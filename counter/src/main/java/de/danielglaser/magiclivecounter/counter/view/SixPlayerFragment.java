@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import java.util.List;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.model.Settings;
@@ -119,6 +122,26 @@ public class SixPlayerFragment extends Fragment {
                 break;
             }
         }
+
+        Button restartButton = v.findViewById(R.id.restartButton);
+
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // reset Points
+                //Settings.getInstance().resetPoints();
+
+                FragmentManager fragmentManager = getChildFragmentManager();
+
+                List<Fragment> fragments = fragmentManager.getFragments();
+
+                for (Fragment fragment : fragments) {
+                    if (fragment instanceof PlayerFragment) {
+                        ((PlayerFragment) fragment).resetPoints();
+                    }
+                }
+            }
+        });
 
         // -----------------------------------------------------------------------------------------
 
