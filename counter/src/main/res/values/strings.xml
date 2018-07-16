@@ -3,4 +3,5 @@
     <string name="NameNotNull">Name can\'t be empty!</string>
     <string name="menu">Menu</string>
     <string name="name">Name</string>
+    <string name="start_live_key">startLive</string>
 </resources>

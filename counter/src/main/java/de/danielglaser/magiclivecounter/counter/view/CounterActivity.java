@@ -1,6 +1,7 @@
 package de.danielglaser.magiclivecounter.counter.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,6 +39,7 @@ public class CounterActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
+    private static Context appContext;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
@@ -91,17 +93,21 @@ public class CounterActivity extends AppCompatActivity {
         }
     };
 
+    public static Context getAppContext() {
+        return appContext;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        appContext = this;
 
         setContentView(R.layout.activity_counter);
 
         mVisible = true;
         //mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.mainLayout);
-
-        final Settings settings = new Settings();
 
         final Spinner startLiveSpinner = findViewById(R.id.startLiveSpinner);
 
@@ -113,7 +119,7 @@ public class CounterActivity extends AppCompatActivity {
                     String startLiveString = (String) startLiveObject;
                     int startLiveInteger = Integer.parseInt(startLiveString);
                     Log.d("Test", "Live: " + startLiveInteger);
-                    settings.setStartLive(startLiveInteger);
+                    Settings.getInstance().setStartLive(startLiveInteger);
                 }
             }
 
@@ -121,6 +127,17 @@ public class CounterActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        String[] startLiveArray = getResources().getStringArray(R.array.amountOfStartLive);
+
+        int i;
+
+        for (i = 0; i < startLiveArray.length; i++) {
+            if (Integer.parseInt(startLiveArray[i]) == Settings.getInstance().getStartLive()) {
+                startLiveSpinner.setSelection(i);
+                break;
+            }
+        }
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -152,6 +169,12 @@ public class CounterActivity extends AppCompatActivity {
         super.onResume();
 
         delayedHide(100);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Settings.getInstance().save();
     }
 
     public void loadFragment(Fragment fragment) {
