@@ -4,4 +4,6 @@
     <string name="menu">Menu</string>
     <string name="name">Name</string>
     <string name="start_live_key">startLive</string>
+    <string name="players">Players</string>
+    <string name="startLive">Start live</string>
 </resources>
