@@ -6,8 +6,8 @@ public class Player {
     private int energy;
     private int commanderDamage;
 
-    public Player(int live) {
-        this.live = live;
+    public Player() {
+        this.live = Settings.getInstance().getStartLive();
         this.poison = 0;
         this.energy = 0;
         this.commanderDamage = 0;
@@ -59,5 +59,12 @@ public class Player {
 
     public void subCommanderDamage(int amount) {
         commanderDamage -= amount;
+    }
+
+    public void resetPoints() {
+        this.live = Settings.getInstance().getStartLive();
+        this.poison = 0;
+        this.energy = 0;
+        this.commanderDamage = 0;
     }
 }

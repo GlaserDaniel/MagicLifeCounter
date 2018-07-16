@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.model.Player;
-import de.danielglaser.magiclivecounter.counter.model.Settings;
 
 
 /**
@@ -45,7 +44,7 @@ public class PlayerFragment extends Fragment {
 
     public PlayerFragment() {
         // Required empty public constructor
-        player = new Player(Settings.getInstance().getStartLive());
+        player = new Player();
     }
 
     /**
