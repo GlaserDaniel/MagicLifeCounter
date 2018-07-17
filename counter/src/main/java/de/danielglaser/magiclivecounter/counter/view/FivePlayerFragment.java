@@ -88,6 +88,7 @@ public class FivePlayerFragment extends Fragment {
                         break;
                     case View.VISIBLE:
                         manuLayout.setVisibility(View.INVISIBLE);
+                        activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
                         break;
                 }
             }
@@ -104,6 +105,7 @@ public class FivePlayerFragment extends Fragment {
                     int startLiveInteger = Integer.parseInt(startLiveString);
                     Log.d("Test", "Live: " + startLiveInteger);
                     Settings.getInstance().setStartLive(startLiveInteger);
+                    activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
                 }
             }
 

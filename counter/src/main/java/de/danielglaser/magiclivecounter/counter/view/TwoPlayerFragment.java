@@ -79,19 +79,20 @@ public class TwoPlayerFragment extends Fragment {
         // -----------------------------------------------------------------------------------------
 
         final Button menuButton = v.findViewById(R.id.menuButton);
-        final ConstraintLayout manuLayout = v.findViewById(R.id.menuLayout);
+        final ConstraintLayout menuLayout = v.findViewById(R.id.menuLayout);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int visibility = manuLayout.getVisibility();
+                int visibility = menuLayout.getVisibility();
                 switch (visibility) {
                     case View.GONE:
                     case View.INVISIBLE:
-                        manuLayout.setVisibility(View.VISIBLE);
+                        menuLayout.setVisibility(View.VISIBLE);
                         break;
                     case View.VISIBLE:
-                        manuLayout.setVisibility(View.INVISIBLE);
+                        menuLayout.setVisibility(View.INVISIBLE);
+                        activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
                         break;
                 }
             }
@@ -108,6 +109,7 @@ public class TwoPlayerFragment extends Fragment {
                     int startLiveInteger = Integer.parseInt(startLiveString);
                     Log.d("Test", "Live: " + startLiveInteger);
                     Settings.getInstance().setStartLive(startLiveInteger);
+                    activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
                 }
             }
 

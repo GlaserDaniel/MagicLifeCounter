@@ -143,7 +143,7 @@ public class PlayerFragment extends Fragment {
                                 }
 
                                 // fullscreen again
-                                activity.delayedHide(100);
+                                activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
 
                                 // to not get a IllegalStateException
                                 ((ViewGroup) view.getParent()).removeAllViews();
@@ -155,7 +155,7 @@ public class PlayerFragment extends Fragment {
                                 // cancel the dialog
 
                                 // fullscreen again
-                                activity.delayedHide(100);
+                                activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
 
                                 // to not get a IllegalStateException
                                 ((ViewGroup) view.getParent()).removeAllViews();
@@ -168,7 +168,7 @@ public class PlayerFragment extends Fragment {
                                 // cancel the dialog
 
                                 // fullscreen again
-                                activity.delayedHide(100);
+                                activity.delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
 
                                 // to not get a IllegalStateException
                                 ((ViewGroup) view.getParent()).removeAllViews();

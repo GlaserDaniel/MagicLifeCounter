@@ -127,14 +127,14 @@ public class CounterActivity extends AppCompatActivity {
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls
         // are available.
-        delayedHide(100);
+        delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        delayedHide(100);
+        delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
     }
 
     @Override
@@ -147,7 +147,7 @@ public class CounterActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mainLayout, fragment)
                 .commit();
-        delayedHide(100);
+        delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
 
         if (fragment instanceof TwoPlayerFragment) {
             // for 2 player portrait
@@ -156,6 +156,10 @@ public class CounterActivity extends AppCompatActivity {
             // for 3 player and more landscape
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
+    }
+
+    public void initUI() {
+
     }
 
     private void toggle() {
