@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Spinner;
 
 import de.danielglaser.magiclivecounter.counter.R;
 
@@ -70,40 +68,6 @@ public class FourPlayerFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_four_player, container, false);
 
         activity.initMenuUI(this, v);
-
-        final Spinner playerSelectorSpinner = v.findViewById(R.id.playerSelectorSpinner);
-
-        playerSelectorSpinner.setSelection(2);
-
-        playerSelectorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Object object = playerSelectorSpinner.getItemAtPosition(position);
-                if (object instanceof String) {
-                    String string = (String) object;
-
-                    switch (string) {
-                        case "2":
-                            activity.loadFragment(new TwoPlayerFragment());
-                            break;
-                        case "3":
-                            activity.loadFragment(new ThreePlayerFragment());
-                            break;
-                        case "5":
-                            activity.loadFragment(new FivePlayerFragment());
-                            break;
-                        case "6":
-                            activity.loadFragment(new SixPlayerFragment());
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Object o = new Object();
-            }
-        });
 
         return v;
     }

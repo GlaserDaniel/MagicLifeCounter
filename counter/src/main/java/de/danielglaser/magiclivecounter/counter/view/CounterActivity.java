@@ -102,6 +102,8 @@ public class CounterActivity extends AppCompatActivity {
         return appContext;
     }
 
+    private int actualPlayersView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,6 +168,37 @@ public class CounterActivity extends AppCompatActivity {
         }
     }
 
+    private void loadFittingFragment(int amountOfPlayers) {
+        // wenn bereits in der gewählten Ansicht
+        if (amountOfPlayers == actualPlayersView) {
+            // mache nichts
+            return;
+        }
+
+        // Andernfalls gehe in die gewählte Ansicht
+        actualPlayersView = amountOfPlayers;
+        Settings.getInstance().setAmountOfPlayers(amountOfPlayers);
+        switch (amountOfPlayers) {
+            case 2:
+                loadFragment(new TwoPlayerFragment());
+                break;
+            case 3:
+                loadFragment(new ThreePlayerFragment());
+                break;
+            case 4:
+                loadFragment(new FourPlayerFragment());
+                break;
+            case 5:
+                loadFragment(new FivePlayerFragment());
+                break;
+            case 6:
+                loadFragment(new SixPlayerFragment());
+                break;
+            default:
+                Settings.getInstance().setAmountOfPlayers(2);
+        }
+    }
+
     public void initMenuUI(final Fragment fragment, View view) {
         final Button menuButton = view.findViewById(R.id.menuButton);
         final ConstraintLayout menuLayout = view.findViewById(R.id.menuLayout);
@@ -209,9 +242,7 @@ public class CounterActivity extends AppCompatActivity {
 
         String[] startLiveArray = getResources().getStringArray(R.array.amountOfStartLive);
 
-        int i;
-
-        for (i = 0; i < startLiveArray.length; i++) {
+        for (int i = 0; i < startLiveArray.length; i++) {
             if (Integer.parseInt(startLiveArray[i]) == Settings.getInstance().getStartLive()) {
                 startLiveSpinner.setSelection(i);
                 break;
@@ -237,6 +268,40 @@ public class CounterActivity extends AppCompatActivity {
                 }
             }
         });
+
+        final Spinner playerSelectorSpinner = view.findViewById(R.id.playerSelectorSpinner);
+
+        playerSelectorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object object = playerSelectorSpinner.getItemAtPosition(position);
+                if (object instanceof String) {
+                    String string = (String) object;
+                    int playerSelectInt = Integer.parseInt(string);
+                    if (playerSelectInt != Settings.getInstance().getAmountOfPlayers()) {
+                        loadFittingFragment(Integer.parseInt(string));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        String[] amountOfPlayersArray = getResources().getStringArray(R.array.amountOfPlayers);
+
+        for (int j = 0; j < amountOfPlayersArray.length; j++) {
+            if (Integer.parseInt(amountOfPlayersArray[j]) == Settings.getInstance().getAmountOfPlayers()) {
+                playerSelectorSpinner.setSelection(j);
+                break;
+            }
+        }
+
+        menuLayout.setVisibility(View.VISIBLE);
+        menuLayout.setVisibility(View.INVISIBLE);
+
+        loadFittingFragment(Settings.getInstance().getAmountOfPlayers());
     }
 
     private void toggle() {

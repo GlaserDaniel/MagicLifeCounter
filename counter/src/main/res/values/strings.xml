@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="START_LIVE_KEY">startLive</string>
+    <string name="AMOUNT_OF_PLAYERS_KEY">amountOfPlayers</string>
     <string name="NameNotNull">Name can\'t be empty!</string>
     <string name="menu">Menu</string>
     <string name="name">Name</string>
-    <string name="start_live_key">startLive</string>
     <string name="players">Players</string>
     <string name="startLive">Start live</string>
 </resources>

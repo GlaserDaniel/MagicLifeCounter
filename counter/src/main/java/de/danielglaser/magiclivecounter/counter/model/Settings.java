@@ -36,6 +36,7 @@ public class Settings {
 
     private int startLive;
     private ArrayList<Player> players = new ArrayList<>();
+    private int amountOfPlayers;
 
     public int getStartLive() {
         return startLive;
@@ -43,6 +44,14 @@ public class Settings {
 
     public void setStartLive(int startLive) {
         this.startLive = startLive;
+    }
+
+    public int getAmountOfPlayers() {
+        return amountOfPlayers;
+    }
+
+    public void setAmountOfPlayers(int amountOfPlayers) {
+        this.amountOfPlayers = amountOfPlayers;
     }
 
     public void addPlayer(Player player) {
@@ -57,14 +66,16 @@ public class Settings {
 
     private void load() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        setStartLive(sharedPref.getInt(context.getString(R.string.start_live_key), context.getResources().getInteger(R.integer.default_start_live)));
+        setStartLive(sharedPref.getInt(context.getString(R.string.START_LIVE_KEY), context.getResources().getInteger(R.integer.default_start_live)));
+        setAmountOfPlayers(sharedPref.getInt(context.getString(R.string.AMOUNT_OF_PLAYERS_KEY), context.getResources().getInteger(R.integer.default_amount_of_players)));
     }
 
     public void save() {
         //SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(context.getString(R.string.start_live_key), startLive);
+        editor.putInt(context.getString(R.string.START_LIVE_KEY), startLive);
+        editor.putInt(context.getString(R.string.AMOUNT_OF_PLAYERS_KEY), amountOfPlayers);
         editor.apply();
     }
 }
