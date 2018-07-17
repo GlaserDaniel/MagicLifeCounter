@@ -5,11 +5,19 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Spinner;
+
+import java.util.List;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.model.Settings;
@@ -158,8 +166,77 @@ public class CounterActivity extends AppCompatActivity {
         }
     }
 
-    public void initUI() {
+    public void initMenuUI(final Fragment fragment, View view) {
+        final Button menuButton = view.findViewById(R.id.menuButton);
+        final ConstraintLayout menuLayout = view.findViewById(R.id.menuLayout);
 
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int visibility = menuLayout.getVisibility();
+                switch (visibility) {
+                    case View.GONE:
+                    case View.INVISIBLE:
+                        menuLayout.setVisibility(View.VISIBLE);
+                        break;
+                    case View.VISIBLE:
+                        menuLayout.setVisibility(View.INVISIBLE);
+                        delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
+                        break;
+                }
+            }
+        });
+
+        final Spinner startLiveSpinner = view.findViewById(R.id.startLiveSpinner);
+
+        startLiveSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object startLiveObject = startLiveSpinner.getItemAtPosition(position);
+                if (startLiveObject instanceof String) {
+                    String startLiveString = (String) startLiveObject;
+                    int startLiveInteger = Integer.parseInt(startLiveString);
+                    Log.d("Test", "Live: " + startLiveInteger);
+                    Settings.getInstance().setStartLive(startLiveInteger);
+                    delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        String[] startLiveArray = getResources().getStringArray(R.array.amountOfStartLive);
+
+        int i;
+
+        for (i = 0; i < startLiveArray.length; i++) {
+            if (Integer.parseInt(startLiveArray[i]) == Settings.getInstance().getStartLive()) {
+                startLiveSpinner.setSelection(i);
+                break;
+            }
+        }
+
+        Button restartButton = view.findViewById(R.id.restartButton);
+
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // reset Points
+                //Settings.getInstance().resetPoints();
+
+                FragmentManager fragmentManager = fragment.getChildFragmentManager();
+
+                List<Fragment> fragments = fragmentManager.getFragments();
+
+                for (Fragment fragment : fragments) {
+                    if (fragment instanceof PlayerFragment) {
+                        ((PlayerFragment) fragment).resetPoints();
+                    }
+                }
+            }
+        });
     }
 
     private void toggle() {
