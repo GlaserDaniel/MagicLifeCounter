@@ -16,10 +16,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.List;
 
 import de.danielglaser.magiclivecounter.counter.R;
+import de.danielglaser.magiclivecounter.counter.helperClasses.Utilities;
 import de.danielglaser.magiclivecounter.counter.model.Settings;
 
 /**
@@ -266,6 +268,12 @@ public class CounterActivity extends AppCompatActivity {
                         ((PlayerFragment) fragment).resetPoints();
                     }
                 }
+
+                // with player may start the game?
+                int amountOfPlayers = fragments.size();
+                int playerWhoBegins = Utilities.getRandomNumberInRange(1, amountOfPlayers);
+
+                Toast.makeText(CounterActivity.this, "Player " + playerWhoBegins + " begins", Toast.LENGTH_LONG).show();
             }
         });
 
