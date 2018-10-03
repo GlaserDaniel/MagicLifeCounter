@@ -217,6 +217,13 @@ public class CounterActivity extends AppCompatActivity {
                     case View.GONE:
                     case View.INVISIBLE:
                         menuLayout.setVisibility(View.VISIBLE);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                menuLayout.setVisibility(View.INVISIBLE);
+                            }
+                        }, 5000);
                         break;
                     case View.VISIBLE:
                         menuLayout.setVisibility(View.INVISIBLE);
