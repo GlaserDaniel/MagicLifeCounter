@@ -177,8 +177,9 @@ public class CounterActivity extends AppCompatActivity {
             return;
         }
 
-        // Andernfalls gehe in die gewählte Ansicht
         actualPlayersView = amountOfPlayers;
+
+        // Andernfalls gehe in die gewählte Ansicht
         Settings.getInstance().setAmountOfPlayers(amountOfPlayers);
         switch (amountOfPlayers) {
             case 2:
