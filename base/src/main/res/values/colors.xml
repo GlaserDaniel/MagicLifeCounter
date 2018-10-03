@@ -9,6 +9,7 @@
     <color name="red">#FFCC0000</color>
     <color name="gray">#FFAAAAAA</color>
     <color name="lightGray">#FFCCCCCC</color>
+    <color name="gold">#D4AF37</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

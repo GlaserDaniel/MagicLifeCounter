@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -17,7 +18,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -312,22 +312,51 @@ public class CounterActivity extends AppCompatActivity {
 
     private void chooseStartPlayer(final List<Fragment> fragments) {
         // with player may start the game?
-        int amountOfPlayers = fragments.size();
+        final int amountOfPlayers = fragments.size();
         final int playerWhoBegins = Utilities.getRandomNumberInRange(1, amountOfPlayers);
-        for (final Fragment fragment : fragments) {
-            if (fragment instanceof PlayerFragment) {
-                ((PlayerFragment) fragment).setBackgroundColor(Color.YELLOW);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((PlayerFragment) fragment).setBackgroundColor(Color.BLACK);
-                    }
-                }, 2000);
-            }
-        }
 
-        Toast.makeText(CounterActivity.this, "Player " + playerWhoBegins + " begins", Toast.LENGTH_LONG).show();
+        AsyncTask chooseStartPlayerTask = new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                int howOftenItBlinks = 9;
+                int timeToSleepBetweenBlinks = 100;
+                int timeToShowWhoBegins = 5000;
+                int randomNumber = -1;
+                int oldRandomNumber = -1;
+
+                for (int i = howOftenItBlinks; i > 0; i--) {
+                    while (randomNumber == oldRandomNumber) {
+                        randomNumber = Utilities.getRandomNumberInRange(1, amountOfPlayers);
+                    }
+
+                    oldRandomNumber = randomNumber;
+
+                    PlayerFragment playerFragment = (PlayerFragment) fragments.get(randomNumber - 1);
+
+                    playerFragment.setBackgroundColor((getResources().getColor(R.color.gold)));
+
+                    try {
+                        Thread.sleep(timeToSleepBetweenBlinks);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    playerFragment.setBackgroundColor(Color.BLACK);
+                }
+                ((PlayerFragment) fragments.get(playerWhoBegins - 1)).setBackgroundColor(getResources().getColor(R.color.gold));
+
+                try {
+                    Thread.sleep(timeToShowWhoBegins);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                ((PlayerFragment) fragments.get(playerWhoBegins - 1)).setBackgroundColor(Color.BLACK);
+                return null;
+            }
+        };
+
+        chooseStartPlayerTask.execute();
     }
 
     private void toggle() {
