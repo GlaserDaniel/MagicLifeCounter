@@ -107,6 +107,8 @@ public class CounterActivity extends AppCompatActivity {
 
     private int actualPlayersView;
 
+    AsyncTask chooseStartPlayerTask = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,7 +317,11 @@ public class CounterActivity extends AppCompatActivity {
         final int amountOfPlayers = fragments.size();
         final int playerWhoBegins = Utilities.getRandomNumberInRange(1, amountOfPlayers);
 
-        AsyncTask chooseStartPlayerTask = new AsyncTask() {
+        if (chooseStartPlayerTask != null) {
+            chooseStartPlayerTask.cancel(true);
+        }
+
+        chooseStartPlayerTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] objects) {
                 int howOftenItBlinks = 9;
@@ -354,9 +360,7 @@ public class CounterActivity extends AppCompatActivity {
                 ((PlayerFragment) fragments.get(playerWhoBegins - 1)).setBackgroundColor(Color.BLACK);
                 return null;
             }
-        };
-
-        chooseStartPlayerTask.execute();
+        }.execute();
     }
 
     private void toggle() {
