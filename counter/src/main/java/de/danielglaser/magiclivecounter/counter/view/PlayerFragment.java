@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -40,6 +41,7 @@ public class PlayerFragment extends Fragment {
     private TextView commanderDamageTextView;
 
     private CounterActivity activity;
+    private ConstraintLayout playerLayout;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -78,6 +80,8 @@ public class PlayerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_player, container, false);
+
+        playerLayout = v.findViewById(R.id.playerLayout);
 
         playerLiveText = v.findViewById(R.id.playerLiveText);
         updateLive();
@@ -262,6 +266,10 @@ public class PlayerFragment extends Fragment {
         updatePoison();
         updateEnergy();
         updateCommanderDamage();
+    }
+
+    public void setBackgroundColor(int color) {
+        playerLayout.setBackgroundColor(color);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -3,6 +3,7 @@ package de.danielglaser.magiclivecounter.counter.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -270,11 +271,7 @@ public class CounterActivity extends AppCompatActivity {
                     }
                 }
 
-                // with player may start the game?
-                int amountOfPlayers = fragments.size();
-                int playerWhoBegins = Utilities.getRandomNumberInRange(1, amountOfPlayers);
-
-                Toast.makeText(CounterActivity.this, "Player " + playerWhoBegins + " begins", Toast.LENGTH_LONG).show();
+                chooseStartPlayer(fragments);
             }
         });
 
@@ -311,6 +308,26 @@ public class CounterActivity extends AppCompatActivity {
         menuLayout.setVisibility(View.INVISIBLE);
 
         loadFittingFragment(Settings.getInstance().getAmountOfPlayers());
+    }
+
+    private void chooseStartPlayer(final List<Fragment> fragments) {
+        // with player may start the game?
+        int amountOfPlayers = fragments.size();
+        final int playerWhoBegins = Utilities.getRandomNumberInRange(1, amountOfPlayers);
+        for (final Fragment fragment : fragments) {
+            if (fragment instanceof PlayerFragment) {
+                ((PlayerFragment) fragment).setBackgroundColor(Color.YELLOW);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((PlayerFragment) fragment).setBackgroundColor(Color.BLACK);
+                    }
+                }, 2000);
+            }
+        }
+
+        Toast.makeText(CounterActivity.this, "Player " + playerWhoBegins + " begins", Toast.LENGTH_LONG).show();
     }
 
     private void toggle() {
