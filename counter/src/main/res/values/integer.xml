@@ -3,4 +3,5 @@
     <integer name="hide_delay_millis">100</integer>
     <integer name="default_start_live">20</integer>
     <integer name="default_amount_of_players">2</integer>
+    <integer name="menu_hide_delay_millis">10000</integer>
 </resources>

@@ -217,13 +217,16 @@ public class CounterActivity extends AppCompatActivity {
                     case View.GONE:
                     case View.INVISIBLE:
                         menuLayout.setVisibility(View.VISIBLE);
+
+                        // hides the menu after a certain time
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 menuLayout.setVisibility(View.INVISIBLE);
                             }
-                        }, 5000);
+                        }, getResources().getInteger(R.integer.menu_hide_delay_millis));
+
                         break;
                     case View.VISIBLE:
                         menuLayout.setVisibility(View.INVISIBLE);
