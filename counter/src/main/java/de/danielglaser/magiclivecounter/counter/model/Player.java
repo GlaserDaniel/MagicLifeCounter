@@ -1,16 +1,26 @@
 package de.danielglaser.magiclivecounter.counter.model;
 
 public class Player {
+    private String name;
     private int live;
     private int poison;
     private int energy;
     private int commanderDamage;
 
     public Player() {
+        this.name = "";
         this.live = Settings.getInstance().getStartLive();
         this.poison = 0;
         this.energy = 0;
         this.commanderDamage = 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getLive() {

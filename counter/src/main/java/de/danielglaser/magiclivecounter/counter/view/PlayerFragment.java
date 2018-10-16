@@ -139,6 +139,7 @@ public class PlayerFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String name = nameEditText.getText().toString();
+                                player.setName(name);
                                 if (name.isEmpty()) {
                                     Toast.makeText(getContext(), R.string.NameNotNull, Toast.LENGTH_SHORT).show();
                                 } else {
