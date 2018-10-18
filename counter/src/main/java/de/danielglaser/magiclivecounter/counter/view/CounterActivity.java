@@ -323,7 +323,9 @@ public class CounterActivity extends AppCompatActivity {
                     }
                 };
 
-                thread.start();
+                if (getResources().getBoolean(R.bool.enable_timer)) {
+                    thread.start();
+                }
             }
         });
 
