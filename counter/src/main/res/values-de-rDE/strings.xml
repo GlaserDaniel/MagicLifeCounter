@@ -5,4 +5,5 @@
     <string name="name">Name</string>
     <string name="players">Spieler</string>
     <string name="startLive">Start Leben</string>
+    <string name="line_image_description">a line</string>
 </resources>

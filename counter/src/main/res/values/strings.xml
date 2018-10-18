@@ -7,4 +7,5 @@
     <string name="name">Name</string>
     <string name="players">Players</string>
     <string name="startLive">Start live</string>
+    <string name="line_image_description">a line</string>
 </resources>

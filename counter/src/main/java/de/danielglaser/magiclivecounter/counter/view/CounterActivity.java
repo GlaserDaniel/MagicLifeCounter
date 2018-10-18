@@ -18,8 +18,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import de.danielglaser.magiclivecounter.counter.R;
 import de.danielglaser.magiclivecounter.counter.helperClasses.Utilities;
@@ -208,6 +210,7 @@ public class CounterActivity extends AppCompatActivity {
     public void initMenuUI(final Fragment fragment, View view) {
         final Button menuButton = view.findViewById(R.id.menuButton);
         final ConstraintLayout menuLayout = view.findViewById(R.id.menuLayout);
+        final TextView timerTextView = view.findViewById(R.id.timerTextView);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,6 +288,42 @@ public class CounterActivity extends AppCompatActivity {
                 }
 
                 chooseStartPlayer(fragments);
+
+                //start timer
+                final long startTime = System.currentTimeMillis();
+
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            while (!this.isInterrupted()) {
+                                Thread.sleep(1000);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // update TextView here!
+
+                                        long timeInMillis = System.currentTimeMillis() - startTime;
+
+                                        String timeInString = String.format("%02d:%02d:%02d",
+                                                TimeUnit.MILLISECONDS.toHours(timeInMillis),
+                                                TimeUnit.MILLISECONDS.toMinutes(timeInMillis) -
+                                                        TimeUnit.MINUTES.toMinutes(TimeUnit.MICROSECONDS.toHours(timeInMillis)),
+                                                TimeUnit.MILLISECONDS.toSeconds(timeInMillis) -
+                                                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeInMillis))
+                                        );
+
+
+                                        timerTextView.setText(timeInString);
+                                    }
+                                });
+                            }
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                };
+
+                thread.start();
             }
         });
 

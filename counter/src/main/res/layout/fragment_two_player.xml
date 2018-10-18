@@ -62,10 +62,22 @@
         android:id="@+id/lineImageView"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:contentDescription="@string/line_image_description"
         app:layout_constraintBottom_toTopOf="@+id/player2Holder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:color/white" />
+
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline" />
 
     <include layout="@layout/menu_overlay" />
 
