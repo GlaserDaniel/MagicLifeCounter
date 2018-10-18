@@ -224,6 +224,7 @@ public class CounterActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 menuLayout.setVisibility(View.INVISIBLE);
+                                delayedHide(getResources().getInteger(R.integer.hide_delay_millis));
                             }
                         }, getResources().getInteger(R.integer.menu_hide_delay_millis));
 
