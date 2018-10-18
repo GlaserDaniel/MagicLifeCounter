@@ -308,7 +308,7 @@ public class CounterActivity extends AppCompatActivity {
                                         String timeInString = String.format("%02d:%02d:%02d",
                                                 TimeUnit.MILLISECONDS.toHours(timeInMillis),
                                                 TimeUnit.MILLISECONDS.toMinutes(timeInMillis) -
-                                                        TimeUnit.MINUTES.toMinutes(TimeUnit.MICROSECONDS.toHours(timeInMillis)),
+                                                        TimeUnit.HOURS.toMinutes(TimeUnit.MICROSECONDS.toHours(timeInMillis)),
                                                 TimeUnit.MILLISECONDS.toSeconds(timeInMillis) -
                                                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeInMillis))
                                         );
