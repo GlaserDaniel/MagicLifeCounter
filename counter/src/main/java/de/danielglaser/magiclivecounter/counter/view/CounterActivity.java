@@ -111,6 +111,8 @@ public class CounterActivity extends AppCompatActivity {
 
     AsyncTask chooseStartPlayerTask = null;
 
+    Thread timerThread = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -292,7 +294,11 @@ public class CounterActivity extends AppCompatActivity {
                 //start timer
                 final long startTime = System.currentTimeMillis();
 
-                Thread thread = new Thread() {
+                if (timerThread != null) {
+                    timerThread.interrupt();
+                }
+
+                timerThread = new Thread() {
                     @Override
                     public void run() {
                         try {
@@ -305,14 +311,25 @@ public class CounterActivity extends AppCompatActivity {
 
                                         long timeInMillis = System.currentTimeMillis() - startTime;
 
-                                        String timeInString = String.format("%02d:%02d:%02d",
-                                                TimeUnit.MILLISECONDS.toHours(timeInMillis),
-                                                TimeUnit.MILLISECONDS.toMinutes(timeInMillis) -
-                                                        TimeUnit.HOURS.toMinutes(TimeUnit.MICROSECONDS.toHours(timeInMillis)),
-                                                TimeUnit.MILLISECONDS.toSeconds(timeInMillis) -
-                                                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeInMillis))
-                                        );
+                                        // for testing a hour
+                                        //timeInMillis += 3590000;
 
+                                        long hours = TimeUnit.MILLISECONDS.toHours(timeInMillis);
+                                        long minutes = TimeUnit.MILLISECONDS.toMinutes(timeInMillis);
+                                        long seconds = TimeUnit.MILLISECONDS.toSeconds(timeInMillis);
+
+                                        String timeInString;
+                                        if (hours < 1) {
+                                            timeInString = String.format("%02d:%02d",
+                                                    minutes - TimeUnit.HOURS.toMinutes(hours),
+                                                    seconds - TimeUnit.MINUTES.toSeconds(minutes)
+                                            );
+                                        } else {
+                                            timeInString = String.format("%02d:%02d",
+                                                    hours,
+                                                    minutes - TimeUnit.HOURS.toMinutes(hours)
+                                            );
+                                        }
 
                                         timerTextView.setText(timeInString);
                                     }
@@ -324,7 +341,7 @@ public class CounterActivity extends AppCompatActivity {
                 };
 
                 if (getResources().getBoolean(R.bool.enable_timer)) {
-                    thread.start();
+                    timerThread.start();
                 }
             }
         });
