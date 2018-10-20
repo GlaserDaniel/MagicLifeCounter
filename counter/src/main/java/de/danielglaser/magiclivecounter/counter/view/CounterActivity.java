@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import de.danielglaser.magiclivecounter.counter.R;
@@ -311,7 +312,7 @@ public class CounterActivity extends AppCompatActivity {
 
                                         long timeInMillis = System.currentTimeMillis() - startTime;
 
-                                        // for testing a hour
+                                        // for testing an hour
                                         //timeInMillis += 3590000;
 
                                         long hours = TimeUnit.MILLISECONDS.toHours(timeInMillis);
@@ -320,12 +321,12 @@ public class CounterActivity extends AppCompatActivity {
 
                                         String timeInString;
                                         if (hours < 1) {
-                                            timeInString = String.format("%02d:%02d",
+                                            timeInString = String.format(Locale.getDefault(), "%02d:%02d",
                                                     minutes - TimeUnit.HOURS.toMinutes(hours),
                                                     seconds - TimeUnit.MINUTES.toSeconds(minutes)
                                             );
                                         } else {
-                                            timeInString = String.format("%02d:%02d",
+                                            timeInString = String.format(Locale.getDefault(), "%02d:%02d",
                                                     hours,
                                                     minutes - TimeUnit.HOURS.toMinutes(hours)
                                             );
@@ -336,6 +337,7 @@ public class CounterActivity extends AppCompatActivity {
                                 });
                             }
                         } catch (InterruptedException e) {
+                            //make nothing
                         }
                     }
                 };
