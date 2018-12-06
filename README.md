@@ -1,1 +1,1 @@
-# MagicLiveCounter
+# MagicLifeCounter
