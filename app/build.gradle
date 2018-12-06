@@ -9,11 +9,11 @@ android {
             storePassword 'android'
         }
     }
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "de.danielglaser.magiclivecounter.app"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 8
         versionName "0.3.1"
     }
